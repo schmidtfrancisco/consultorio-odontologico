@@ -19,12 +19,12 @@ public class Appointment implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date appointmentDate;
     private String appointmentTime;
-    private String condition;
+    private String diagnosis;
     @ManyToOne
-    @JoinColumn(name="appointment_id")
+    @JoinColumn(name="dentist_id")
     private Dentist dentist;
     @ManyToOne
-    @JoinColumn(name="appointment_id2")
+    @JoinColumn(name="patient_id")
     private Patient patient;
 
     public Appointment() {
@@ -34,7 +34,7 @@ public class Appointment implements Serializable {
         this.id = id;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
-        this.condition = condition;
+        this.diagnosis = condition;
     }
     
     public int getId() {
@@ -61,13 +61,28 @@ public class Appointment implements Serializable {
         this.appointmentTime = appointmentTime;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
-    
+
+    public Dentist getDentist() {
+        return dentist;
+    }
+
+    public void setDentist(Dentist dentist) {
+        this.dentist = dentist;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
     
 }
