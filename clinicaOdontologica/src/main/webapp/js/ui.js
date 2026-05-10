@@ -57,6 +57,34 @@
             $('.sidebar').toggleClass('open');
         });
 
+        // ---------- Modales (apertura desde botones, cierre por scrim/Esc/X) ----------
+        // Delegación con `$(document).on('click', selector, handler)`: el handler se engancha
+        // en `document` pero solo dispara cuando el click viene de un elemento que matchea
+        // el selector. Sirve incluso para elementos agregados después.
+        $(document).on('click', '[data-modal-open]', function () {
+            var id = $(this).attr('data-modal-open');
+            $('#' + id).addClass('show');
+            $('[data-modal-scrim="' + id + '"]').addClass('show');
+        });
+        $(document).on('click', '[data-modal-close], [data-modal-scrim]', function () {
+            $('.modal.show').removeClass('show');
+            $('.scrim.show').removeClass('show');
+        });
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape') {
+                $('.modal.show').removeClass('show');
+                $('.scrim.show').removeClass('show');
+            }
+        });
+
+        // ---------- Color picker del form de odontólogo ----------
+        // `[data-color-picker] > button` matchea cualquier botón directo dentro del wrapper.
+        // El handler limpia el borde de los hermanos y resalta el clickeado.
+        $(document).on('click', '[data-color-picker] > button', function () {
+            $(this).siblings().css('border-color', 'transparent');
+            $(this).css('border-color', 'var(--ink)');
+        });
+
         // ---------- Selector de rol del login ----------
         // `$('[data-role-btn]')` es la colección de los dos botones (Secretario/Odontólogo).
         // jQuery deja encadenar: `.length` devuelve cuántos hay (como en un array).

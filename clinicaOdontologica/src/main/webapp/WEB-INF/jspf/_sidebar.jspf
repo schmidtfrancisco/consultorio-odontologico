@@ -1,0 +1,82 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- Sidebar compartido. Antes de incluir, declarar:
+       String activeNav = "dashboard" | "pacientes" | "odontologos" | ...;
+     Las variables ctx, nombre, apellido, rol, sector, iniciales también deben existir. --%>
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-mark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 3.5C5 3.5 3.5 5 3.5 7c0 1.5.5 3 1 5 .5 2 .5 4 1 6 .3 1.5 1 2.5 2 2.5s1.5-1 1.8-2.5c.3-1.7.7-3 1.7-3s1.4 1.3 1.7 3c.3 1.5.8 2.5 1.8 2.5s1.7-1 2-2.5c.5-2 .5-4 1-6 .5-2 1-3.5 1-5 0-2-1.5-3.5-3.5-3.5-1.3 0-2.3.6-3 1.5-.7-.9-1.7-1.5-3-1.5z"/>
+            </svg>
+        </div>
+        <div class="brand-name">Dientitos</div>
+    </div>
+
+    <div class="nav-section-label">Clínica Odontológica</div>
+
+    <a class="nav-item<%= "dashboard".equals(activeNav) ? " active" : "" %>" href="<%= ctx %>/dashboard.jsp">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>
+        </svg>
+        <span>Dashboard</span>
+    </a>
+    <a class="nav-item" href="#">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 3v4M16 3v4"/>
+        </svg>
+        <span>Agenda</span>
+    </a>
+    <a class="nav-item" href="#">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+        </svg>
+        <span>Turnos</span>
+        <span class="badge badge-accent" style="margin-left:auto;">4</span>
+    </a>
+    <a class="nav-item<%= "pacientes".equals(activeNav) ? " active" : "" %>" href="<%= ctx %>/pacientes.jsp">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3 3 0 010 6"/><path d="M21 20c0-2.6-1.5-4.7-4-5.5"/>
+        </svg>
+        <span>Pacientes</span>
+    </a>
+    <a class="nav-item<%= "odontologos".equals(activeNav) ? " active" : "" %>" href="<%= ctx %>/odontologos.jsp">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /><path d="M8 15a6 6 0 1 0 12 0v-3" /><path d="M11 3v2" /><path d="M6 3v2" /><path d="M18 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+        </svg>
+        <span>Odontólogos</span>
+    </a>
+    <a class="nav-item" href="#">
+        <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3h.1a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8v.1a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/>
+        </svg>
+        <span>Horarios</span>
+    </a>
+    <a class="nav-item<%= "usuarios".equals(activeNav) ? " active" : "" %>" href="<%= ctx %>/usuarios.jsp">
+       <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+       <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h5" /><path d="M18.5 18.5l-3.5 3.5l-1.5 -1.5" /><path d="M18.554 18.414a2 2 0 1 1 2.828 -2.828a2 2 0 0 1 -2.828 2.828" /><path d="M16 19l1 1" />
+       </svg>
+       <span>Usuarios</span>
+    </a>
+
+    <div class="nav-spacer"></div>
+
+    <button class="btn btn-ghost" data-theme-toggle style="justify-content:flex-start;padding:8px 10px;margin-bottom:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>
+        </svg>
+        <span data-theme-label>Tema oscuro</span>
+    </button>
+
+    <div class="user-card">
+        <div class="avatar" style="background:var(--brand);color:var(--brand-ink);"><%= iniciales %></div>
+        <div style="flex:1;min-width:0;">
+            <div style="font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><%= nombre %> <%= apellido %></div>
+            <div class="dim" style="font-size:11px;text-transform:capitalize;"><%= rol %><%= sector != null ? " · " + sector : "" %></div>
+        </div>
+        <a class="btn btn-icon btn-ghost" title="Cerrar sesión" href="<%= ctx %>/dashboard.jsp?logout=1">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>
+            </svg>
+        </a>
+    </div>
+</aside>
