@@ -2,21 +2,19 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import logic.LogicController;
-import logic.User;
 
-@WebServlet(name = "UserSv", urlPatterns = {"/UserSv"})
-public class UserSv extends HttpServlet {
+@WebServlet(name = "DeleteUserSv", urlPatterns = {"/DeleteUserSv"})
+public class DeleteUserSv extends HttpServlet {
     
     LogicController controller = new LogicController();
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,12 +40,7 @@ public class UserSv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<User> userList = controller.getUsers();
-        HttpSession session = request.getSession();
-        session.setAttribute("userList", userList);
-        
-        response.sendRedirect("usuarios.jsp");
+        processRequest(request, response);
     }
 
     /**
@@ -61,13 +54,10 @@ public class UserSv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
         
-        controller.createUser(username, password, role);
-        response.sendRedirect("usuarios.jsp");
-        
+        int userId = Integer.parseInt(request.getParameter("id"));
+        controller.deleteUser(userId);
+        response.sendRedirect("UserSv");
     }
 
     /**

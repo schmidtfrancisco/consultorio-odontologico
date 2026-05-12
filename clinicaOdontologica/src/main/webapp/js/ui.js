@@ -77,6 +77,42 @@
             }
         });
 
+        // ---------- Editar / eliminar usuario (tabla de Usuarios) ----------
+        // Cada fila tiene botones con `data-user-edit` o `data-user-delete` y
+        // atributos `data-user-id`, `data-user-username`, `data-user-role`.
+        // Al clickear, prellenamos el modal correspondiente y lo abrimos.
+        $(document).on('click', '[data-user-edit]', function () {
+            var $btn = $(this);
+            var id = $btn.attr('data-user-id');
+            var username = $btn.attr('data-user-username') || '';
+            var role = $btn.attr('data-user-role') || 'dentist';
+
+            var $modal = $('#modal-usuario-edit');
+            $modal.find('[data-edit-id]').val(id);
+            $modal.find('[data-edit-username]').val(username);
+            $modal.find('[data-edit-role]').val(role);
+            $modal.find('input[name="password"]').val('');
+            $modal.find('[data-edit-subtitle]').text('Modificando ' + username + '.');
+
+            $modal.addClass('show');
+            $('[data-modal-scrim="modal-usuario-edit"]').addClass('show');
+        });
+
+        $(document).on('click', '[data-user-delete]', function () {
+            var $btn = $(this);
+            var id = $btn.attr('data-user-id');
+            var username = $btn.attr('data-user-username') || 'este usuario';
+
+            var $modal = $('#modal-usuario-delete');
+            $modal.find('[data-delete-id]').val(id);
+            $modal.find('[data-delete-message]').text(
+                '¿Estás seguro de que querés eliminar a ' + username + '? Esta acción no se puede deshacer.'
+            );
+
+            $modal.addClass('show');
+            $('[data-modal-scrim="modal-usuario-delete"]').addClass('show');
+        });
+
         // ---------- Color picker del form de odontólogo ----------
         // `[data-color-picker] > button` matchea cualquier botón directo dentro del wrapper.
         // El handler limpia el borde de los hermanos y resalta el clickeado.
@@ -120,3 +156,4 @@
     });
 
 })(jQuery);
+
